@@ -376,62 +376,14 @@ function updateHeroStats() {
     }
 }
 
-// Theme Management System (Follows System Preference & Syncs Live)
+// Theme Management System (Forced Dark Theme Only)
 function initThemeManager() {
     const html = document.documentElement;
-    const themeBtn = document.getElementById('theme-toggle-btn');
-    const sunIcon = document.getElementById('theme-icon-sun');
-    const moonIcon = document.getElementById('theme-icon-moon');
+    html.setAttribute('data-theme', 'dark');
+    localStorage.setItem('sora-theme', 'dark');
+    localStorage.removeItem('butterscotch-theme');
     const metaThemeColor = document.getElementById('meta-theme-color');
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-
-    function updateIconsAndMeta(theme) {
-        if (theme === 'light') {
-            if (sunIcon) sunIcon.style.display = 'none';
-            if (moonIcon) moonIcon.style.display = 'block';
-            if (metaThemeColor) metaThemeColor.setAttribute('content', '#f8fafc');
-        } else {
-            if (sunIcon) sunIcon.style.display = 'block';
-            if (moonIcon) moonIcon.style.display = 'none';
-            if (metaThemeColor) metaThemeColor.setAttribute('content', '#07080a');
-        }
-    }
-
-    function applyTheme(theme, save = true) {
-        html.setAttribute('data-theme', theme);
-        if (save) {
-            localStorage.setItem('butterscotch-theme', theme);
-        }
-        updateIconsAndMeta(theme);
-    }
-
-    // Determine initial theme: saved preference or system preference
-    const savedTheme = localStorage.getItem('butterscotch-theme');
-    const systemTheme = mediaQuery.matches ? 'dark' : 'light';
-    const activeTheme = savedTheme || systemTheme;
-    applyTheme(activeTheme, false);
-
-    // Live sync with system theme changes
-    const handleSystemChange = (e) => {
-        // When system theme changes, automatically follow the new system theme
-        const newSystemTheme = e.matches ? 'dark' : 'light';
-        localStorage.removeItem('butterscotch-theme');
-        applyTheme(newSystemTheme, false);
-    };
-
-    if (mediaQuery.addEventListener) {
-        mediaQuery.addEventListener('change', handleSystemChange);
-    } else if (mediaQuery.addListener) {
-        mediaQuery.addListener(handleSystemChange);
-    }
-
-    if (themeBtn) {
-        themeBtn.addEventListener('click', () => {
-            const currentTheme = html.getAttribute('data-theme') || 'dark';
-            const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            applyTheme(nextTheme, true);
-        });
-    }
+    if (metaThemeColor) metaThemeColor.setAttribute('content', '#0a0c10');
 }
 
 // Search and Filter Hub

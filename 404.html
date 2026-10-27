@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-css-theme="-blue">
+<html lang="en" data-theme="dark" data-css-theme="-red">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -8,12 +8,9 @@
     <script>
         (function() {
             try {
-                const saved = localStorage.getItem('butterscotch-theme');
-                const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                const theme = saved || (systemDark ? 'dark' : 'light');
-                document.documentElement.setAttribute('data-theme', theme);
-                const metaTheme = document.getElementById('meta-theme-color');
-                if (metaTheme) metaTheme.setAttribute('content', theme === 'light' ? '#f8fafc' : '#07080a');
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('sora-theme', 'dark');
+                localStorage.removeItem('butterscotch-theme');
             } catch (e) {}
         })();
     </script>
