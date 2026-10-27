@@ -3724,265 +3724,170 @@ body.has-sticky-bar .scroll-top-btn {
 }
 
 /* ==========================================================================
-   Meteor / Shooting Star Background Animation (Triple Quantity & Hyper Intensity)
+   Cosmic Aurora & Giant 3D Orbital Rings (Ultra-Lightweight & Grand Scale)
+   Hardware-accelerated (will-change: transform) for 60-120 FPS zero-lag smoothness
    ========================================================================== */
-.meteors-container {
+
+/* Giant Cosmic Aurora Clouds */
+.cosmic-aurora {
     position: absolute;
-    inset: 0;
+    border-radius: 50%;
+    filter: blur(90px);
     pointer-events: none;
-    overflow: hidden;
+    will-change: transform;
+    opacity: 0.45;
+}
+
+[data-theme="light"] .cosmic-aurora {
+    opacity: 0.22;
+}
+
+.aurora-1 {
+    width: clamp(550px, 65vw, 950px);
+    height: clamp(550px, 65vw, 950px);
+    background: radial-gradient(circle, rgba(244, 63, 94, 0.4) 0%, rgba(236, 72, 153, 0.18) 45%, transparent 70%);
+    top: -220px;
+    left: 50%;
+    animation: auroraDrift1 20s ease-in-out infinite alternate;
+}
+
+.aurora-2 {
+    width: clamp(480px, 55vw, 800px);
+    height: clamp(480px, 55vw, 800px);
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.35) 0%, rgba(99, 102, 241, 0.15) 50%, transparent 70%);
+    top: 35%;
+    right: -150px;
+    animation: auroraDrift2 25s ease-in-out infinite alternate;
+}
+
+.aurora-3 {
+    width: clamp(450px, 50vw, 750px);
+    height: clamp(450px, 50vw, 750px);
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.28) 0%, rgba(244, 63, 94, 0.12) 50%, transparent 70%);
+    bottom: 5%;
+    left: -120px;
+    animation: auroraDrift3 22s ease-in-out infinite alternate;
+}
+
+@keyframes auroraDrift1 {
+    0% {
+        transform: translateX(-50%) translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+        transform: translateX(-50%) translate3d(50px, 35px, 0) scale(1.08);
+    }
+    100% {
+        transform: translateX(-50%) translate3d(-50px, -25px, 0) scale(0.95);
+    }
+}
+
+@keyframes auroraDrift2 {
+    0% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+        transform: translate3d(-40px, 45px, 0) scale(1.1);
+    }
+    100% {
+        transform: translate3d(30px, -35px, 0) scale(0.92);
+    }
+}
+
+@keyframes auroraDrift3 {
+    0% {
+        transform: translate3d(0, 0, 0) scale(0.95);
+    }
+    50% {
+        transform: translate3d(45px, -30px, 0) scale(1.06);
+    }
+    100% {
+        transform: translate3d(-35px, 35px, 0) scale(1);
+    }
+}
+
+/* Giant 3D Cosmic Orbital System */
+.cosmic-orbit-system {
+    position: absolute;
+    top: -180px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(600px, 75vw, 1000px);
+    height: clamp(600px, 75vw, 1000px);
+    pointer-events: none;
     z-index: 0;
 }
 
-.meteor {
+.orbit-ring {
     position: absolute;
-    width: 350px;
-    height: 2.5px;
-    background: linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 1) 25%, rgba(244, 63, 94, 0.9) 60%, rgba(139, 92, 246, 0.6) 85%, transparent 100%);
-    transform: rotate(-35deg);
-    opacity: 0;
-    filter: drop-shadow(0 0 8px #ffffff) drop-shadow(0 0 16px rgba(244, 63, 94, 0.85)) drop-shadow(0 0 28px rgba(139, 92, 246, 0.6));
-    animation: meteorShower 6s infinite ease-out;
-}
-
-.meteor::before {
-    content: '';
-    position: absolute;
-    top: -1.5px;
-    left: 0;
-    width: 5px;
-    height: 5px;
     border-radius: 50%;
-    background: #ffffff;
-    box-shadow: 0 0 10px 3px #ffffff, 0 0 22px 6px rgba(244, 63, 94, 0.9), 0 0 35px 10px rgba(139, 92, 246, 0.7);
+    will-change: transform;
 }
 
-@keyframes meteorShower {
+.ring-outer {
+    inset: 0;
+    border: 1.5px dashed rgba(244, 63, 94, 0.35);
+    box-shadow: 0 0 35px rgba(244, 63, 94, 0.15), inset 0 0 35px rgba(244, 63, 94, 0.12);
+    transform: rotateX(68deg) rotateZ(0deg);
+    animation: orbitSpinOuter 48s linear infinite;
+}
+
+.ring-middle {
+    inset: 14%;
+    border: 1.5px solid rgba(139, 92, 246, 0.32);
+    border-top-color: rgba(244, 63, 94, 0.65);
+    border-bottom-color: rgba(236, 72, 153, 0.65);
+    box-shadow: 0 0 45px rgba(139, 92, 246, 0.2);
+    transform: rotateX(68deg) rotateZ(360deg);
+    animation: orbitSpinInner 36s linear infinite;
+}
+
+.ring-inner {
+    inset: 28%;
+    border: 1px dashed rgba(236, 72, 153, 0.38);
+    box-shadow: 0 0 25px rgba(236, 72, 153, 0.15);
+    transform: rotateX(68deg) rotateZ(0deg);
+    animation: orbitSpinOuter 26s linear infinite;
+}
+
+.orbit-core-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 45%;
+    height: 45%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(244, 63, 94, 0.3) 0%, rgba(139, 92, 246, 0.14) 45%, transparent 70%);
+    filter: blur(35px);
+    animation: corePulseGlow 9s ease-in-out infinite alternate;
+    will-change: transform, opacity;
+}
+
+@keyframes orbitSpinOuter {
+    from {
+        transform: rotateX(68deg) rotateZ(0deg);
+    }
+    to {
+        transform: rotateX(68deg) rotateZ(360deg);
+    }
+}
+
+@keyframes orbitSpinInner {
+    from {
+        transform: rotateX(68deg) rotateZ(360deg);
+    }
+    to {
+        transform: rotateX(68deg) rotateZ(0deg);
+    }
+}
+
+@keyframes corePulseGlow {
     0% {
-        opacity: 0;
-        transform: rotate(-35deg) translateX(0) scale(0.8);
-    }
-    5% {
-        opacity: 1;
-    }
-    18% {
-        opacity: 0;
-        transform: rotate(-35deg) translateX(-1100px) scale(1.15);
+        transform: translate(-50%, -50%) scale(0.9);
+        opacity: 0.65;
     }
     100% {
-        opacity: 0;
-        transform: rotate(-35deg) translateX(-1100px);
+        transform: translate(-50%, -50%) scale(1.15);
+        opacity: 1;
     }
-}
-
-/* Staggered natural timing & positions for 30 meteors with ~350px trails */
-.meteor:nth-child(1) {
-    top: 2%;
-    right: 8%;
-    animation-delay: 0.2s;
-    animation-duration: 4.2s;
-    width: 340px;
-}
-.meteor:nth-child(2) {
-    top: 12%;
-    right: 28%;
-    animation-delay: 0.8s;
-    animation-duration: 4.8s;
-    width: 360px;
-}
-.meteor:nth-child(3) {
-    top: 7%;
-    right: 55%;
-    animation-delay: 1.4s;
-    animation-duration: 4s;
-    width: 300px;
-}
-.meteor:nth-child(4) {
-    top: 22%;
-    right: 14%;
-    animation-delay: 0.5s;
-    animation-duration: 4.5s;
-    width: 380px;
-}
-.meteor:nth-child(5) {
-    top: 32%;
-    right: 42%;
-    animation-delay: 1.9s;
-    animation-duration: 3.8s;
-    width: 320px;
-}
-.meteor:nth-child(6) {
-    top: 18%;
-    right: 75%;
-    animation-delay: 2.3s;
-    animation-duration: 4.6s;
-    width: 350px;
-}
-.meteor:nth-child(7) {
-    top: 42%;
-    right: 5%;
-    animation-delay: 1.1s;
-    animation-duration: 4.1s;
-    width: 360px;
-}
-.meteor:nth-child(8) {
-    top: 52%;
-    right: 30%;
-    animation-delay: 2.7s;
-    animation-duration: 4.4s;
-    width: 310px;
-}
-.meteor:nth-child(9) {
-    top: 28%;
-    right: 62%;
-    animation-delay: 3.1s;
-    animation-duration: 3.9s;
-    width: 340px;
-}
-.meteor:nth-child(10) {
-    top: 62%;
-    right: 18%;
-    animation-delay: 1.6s;
-    animation-duration: 4.7s;
-    width: 370px;
-}
-.meteor:nth-child(11) {
-    top: 72%;
-    right: 48%;
-    animation-delay: 3.5s;
-    animation-duration: 4.2s;
-    width: 290px;
-}
-.meteor:nth-child(12) {
-    top: 38%;
-    right: 82%;
-    animation-delay: 2.1s;
-    animation-duration: 4.5s;
-    width: 350px;
-}
-.meteor:nth-child(13) {
-    top: 15%;
-    right: 38%;
-    animation-delay: 3.9s;
-    animation-duration: 4s;
-    width: 360px;
-}
-.meteor:nth-child(14) {
-    top: 82%;
-    right: 12%;
-    animation-delay: 2.5s;
-    animation-duration: 4.3s;
-    width: 330px;
-}
-.meteor:nth-child(15) {
-    top: 58%;
-    right: 58%;
-    animation-delay: 4.2s;
-    animation-duration: 3.7s;
-    width: 380px;
-}
-.meteor:nth-child(16) {
-    top: 48%;
-    right: 78%;
-    animation-delay: 3.2s;
-    animation-duration: 4.6s;
-    width: 310px;
-}
-.meteor:nth-child(17) {
-    top: 5%;
-    right: 45%;
-    animation-delay: 4.5s;
-    animation-duration: 4.1s;
-    width: 350px;
-}
-.meteor:nth-child(18) {
-    top: 25%;
-    right: 2%;
-    animation-delay: 0.9s;
-    animation-duration: 4.4s;
-    width: 340px;
-}
-.meteor:nth-child(19) {
-    top: 68%;
-    right: 35%;
-    animation-delay: 4.8s;
-    animation-duration: 3.9s;
-    width: 360px;
-}
-.meteor:nth-child(20) {
-    top: 88%;
-    right: 25%;
-    animation-delay: 3.7s;
-    animation-duration: 4.5s;
-    width: 320px;
-}
-.meteor:nth-child(21) {
-    top: 35%;
-    right: 22%;
-    animation-delay: 5.1s;
-    animation-duration: 4.2s;
-    width: 370px;
-}
-.meteor:nth-child(22) {
-    top: 78%;
-    right: 65%;
-    animation-delay: 5.4s;
-    animation-duration: 4s;
-    width: 300px;
-}
-.meteor:nth-child(23) {
-    top: 10%;
-    right: 90%;
-    animation-delay: 2.9s;
-    animation-duration: 4.8s;
-    width: 350px;
-}
-.meteor:nth-child(24) {
-    top: 45%;
-    right: 50%;
-    animation-delay: 5.7s;
-    animation-duration: 3.8s;
-    width: 360px;
-}
-.meteor:nth-child(25) {
-    top: 65%;
-    right: 80%;
-    animation-delay: 4.4s;
-    animation-duration: 4.3s;
-    width: 330px;
-}
-.meteor:nth-child(26) {
-    top: 92%;
-    right: 42%;
-    animation-delay: 6s;
-    animation-duration: 4.1s;
-    width: 380px;
-}
-.meteor:nth-child(27) {
-    top: 16%;
-    right: 18%;
-    animation-delay: 3.4s;
-    animation-duration: 4.6s;
-    width: 320px;
-}
-.meteor:nth-child(28) {
-    top: 55%;
-    right: 10%;
-    animation-delay: 6.3s;
-    animation-duration: 3.9s;
-    width: 350px;
-}
-.meteor:nth-child(29) {
-    top: 85%;
-    right: 55%;
-    animation-delay: 5s;
-    animation-duration: 4.4s;
-    width: 360px;
-}
-.meteor:nth-child(30) {
-    top: 30%;
-    right: 95%;
-    animation-delay: 6.6s;
-    animation-duration: 4.2s;
-    width: 340px;
 }
