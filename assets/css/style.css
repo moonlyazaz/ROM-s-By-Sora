@@ -3488,53 +3488,120 @@ body.has-sticky-bar .scroll-top-btn {
 }
 
 /* ==========================================================================
-   Sora Modern Redesign Overrides
+   Sora Modern Redesign Overrides (Mobile-Optimized 60-120 FPS Android Performance)
    ========================================================================== */
 
-/* Modern Glowing Ambient Backdrop */
+/* Hardware-Isolated Backdrop: zero paint/layout cost during scroll */
 .modern-backdrop {
     position: fixed;
     inset: 0;
     pointer-events: none;
     z-index: 0;
     overflow: hidden;
+    contain: strict;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
-.ambient-glow {
+/* Zero-Blur Pure GPU Radial Nebulae (looks soft & grand, 0ms blur overhead) */
+.nebula-cloud {
     position: absolute;
     border-radius: 50%;
-    filter: blur(120px);
-    opacity: 0.35;
     pointer-events: none;
+    will-change: transform;
+    opacity: 0.45;
 }
 
-.glow-1 {
-    width: 650px;
-    height: 650px;
-    background: radial-gradient(circle, rgba(244, 63, 94, 0.42) 0%, rgba(239, 68, 68, 0.1) 70%, transparent 100%);
+[data-theme="light"] .nebula-cloud {
+    opacity: 0.22;
+}
+
+.nebula-1 {
+    width: clamp(550px, 75vw, 950px);
+    height: clamp(550px, 75vw, 950px);
+    background: radial-gradient(circle, rgba(244, 63, 94, 0.3) 0%, rgba(236, 72, 153, 0.14) 38%, rgba(139, 92, 246, 0.05) 58%, transparent 72%);
+    top: -240px;
+    left: 50%;
+    transform: translateX(-50%) translateZ(0);
+    animation: nebulaDrift1 24s ease-in-out infinite alternate;
+}
+
+.nebula-2 {
+    width: clamp(450px, 60vw, 800px);
+    height: clamp(450px, 60vw, 800px);
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.26) 0%, rgba(99, 102, 241, 0.1) 40%, transparent 68%);
+    top: 35%;
+    right: -150px;
+    transform: translateZ(0);
+    animation: nebulaDrift2 28s ease-in-out infinite alternate;
+}
+
+.nebula-3 {
+    width: clamp(420px, 55vw, 750px);
+    height: clamp(420px, 55vw, 750px);
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.22) 0%, rgba(244, 63, 94, 0.08) 42%, transparent 65%);
+    bottom: 5%;
+    left: -120px;
+    transform: translateZ(0);
+    animation: nebulaDrift3 26s ease-in-out infinite alternate;
+}
+
+@keyframes nebulaDrift1 {
+    0% { transform: translateX(-50%) translate3d(0, 0, 0) scale(1); }
+    100% { transform: translateX(-50%) translate3d(40px, 30px, 0) scale(1.06); }
+}
+
+@keyframes nebulaDrift2 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    100% { transform: translate3d(-35px, 35px, 0) scale(1.08); }
+}
+
+@keyframes nebulaDrift3 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    100% { transform: translate3d(35px, -25px, 0) scale(1.05); }
+}
+
+/* Giant Celestial Orbit SVG (Grand Scale & Zero CPU Repaint) */
+.celestial-orbit-svg {
+    position: absolute;
     top: -160px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateZ(0);
+    width: clamp(550px, 85vw, 980px);
+    height: clamp(550px, 85vw, 980px);
+    pointer-events: none;
+    contain: strict;
+    overflow: visible;
 }
 
-.glow-2 {
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, rgba(139, 92, 246, 0.08) 70%, transparent 100%);
-    top: 35%;
-    right: -120px;
+.orbit-group-outer {
+    transform-origin: 400px 400px;
+    animation: svgSpinOuter 50s linear infinite;
+    will-change: transform;
 }
 
-.glow-3 {
-    width: 450px;
-    height: 450px;
-    background: radial-gradient(circle, rgba(236, 72, 153, 0.22) 0%, transparent 70%);
-    bottom: 8%;
-    left: -100px;
+.orbit-group-middle {
+    transform-origin: 400px 400px;
+    animation: svgSpinInner 38s linear infinite;
+    will-change: transform;
 }
 
-[data-theme="light"] .ambient-glow {
-    opacity: 0.16;
+.orbit-group-inner {
+    transform-origin: 400px 400px;
+    animation: svgSpinOuter 26s linear infinite;
+    will-change: transform;
+}
+
+@keyframes svgSpinOuter {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes svgSpinInner {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
 }
 
 /* Modern Hero */
@@ -3559,7 +3626,6 @@ body.has-sticky-bar .scroll-top-btn {
     font-weight: 600;
     letter-spacing: 0.02em;
     color: var(--text-secondary);
-    backdrop-filter: blur(16px);
     margin-bottom: 18px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
@@ -3612,7 +3678,6 @@ body.has-sticky-bar .scroll-top-btn {
     padding: 10px 24px;
     border-radius: 18px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
-    backdrop-filter: blur(16px);
 }
 
 .hero-stat-item {
@@ -3707,7 +3772,22 @@ body.has-sticky-bar .scroll-top-btn {
     box-shadow: 0 2px 10px rgba(244, 63, 94, 0.4);
 }
 
-@media (max-width: 600px) {
+/* Mobile & Android High-Performance Scrolling */
+@media (max-width: 768px) {
+    /* Kill GPU blur bottlenecks during scroll */
+    nav {
+        background: rgba(20, 18, 24, 0.96) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+    
+    .hero-chip,
+    .modern-hero-stats {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: var(--surface-card) !important;
+    }
+    
     .modern-hero {
         padding: 24px 14px 16px 14px;
     }
@@ -3721,173 +3801,8 @@ body.has-sticky-bar .scroll-top-btn {
         width: calc(100% - 28px);
         margin: 0 14px 14px 14px;
     }
-}
 
-/* ==========================================================================
-   Cosmic Aurora & Giant 3D Orbital Rings (Ultra-Lightweight & Grand Scale)
-   Hardware-accelerated (will-change: transform) for 60-120 FPS zero-lag smoothness
-   ========================================================================== */
-
-/* Giant Cosmic Aurora Clouds */
-.cosmic-aurora {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(90px);
-    pointer-events: none;
-    will-change: transform;
-    opacity: 0.45;
-}
-
-[data-theme="light"] .cosmic-aurora {
-    opacity: 0.22;
-}
-
-.aurora-1 {
-    width: clamp(550px, 65vw, 950px);
-    height: clamp(550px, 65vw, 950px);
-    background: radial-gradient(circle, rgba(244, 63, 94, 0.4) 0%, rgba(236, 72, 153, 0.18) 45%, transparent 70%);
-    top: -220px;
-    left: 50%;
-    animation: auroraDrift1 20s ease-in-out infinite alternate;
-}
-
-.aurora-2 {
-    width: clamp(480px, 55vw, 800px);
-    height: clamp(480px, 55vw, 800px);
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.35) 0%, rgba(99, 102, 241, 0.15) 50%, transparent 70%);
-    top: 35%;
-    right: -150px;
-    animation: auroraDrift2 25s ease-in-out infinite alternate;
-}
-
-.aurora-3 {
-    width: clamp(450px, 50vw, 750px);
-    height: clamp(450px, 50vw, 750px);
-    background: radial-gradient(circle, rgba(236, 72, 153, 0.28) 0%, rgba(244, 63, 94, 0.12) 50%, transparent 70%);
-    bottom: 5%;
-    left: -120px;
-    animation: auroraDrift3 22s ease-in-out infinite alternate;
-}
-
-@keyframes auroraDrift1 {
-    0% {
-        transform: translateX(-50%) translate3d(0, 0, 0) scale(1);
-    }
-    50% {
-        transform: translateX(-50%) translate3d(50px, 35px, 0) scale(1.08);
-    }
-    100% {
-        transform: translateX(-50%) translate3d(-50px, -25px, 0) scale(0.95);
-    }
-}
-
-@keyframes auroraDrift2 {
-    0% {
-        transform: translate3d(0, 0, 0) scale(1);
-    }
-    50% {
-        transform: translate3d(-40px, 45px, 0) scale(1.1);
-    }
-    100% {
-        transform: translate3d(30px, -35px, 0) scale(0.92);
-    }
-}
-
-@keyframes auroraDrift3 {
-    0% {
-        transform: translate3d(0, 0, 0) scale(0.95);
-    }
-    50% {
-        transform: translate3d(45px, -30px, 0) scale(1.06);
-    }
-    100% {
-        transform: translate3d(-35px, 35px, 0) scale(1);
-    }
-}
-
-/* Giant 3D Cosmic Orbital System */
-.cosmic-orbit-system {
-    position: absolute;
-    top: -180px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: clamp(600px, 75vw, 1000px);
-    height: clamp(600px, 75vw, 1000px);
-    pointer-events: none;
-    z-index: 0;
-}
-
-.orbit-ring {
-    position: absolute;
-    border-radius: 50%;
-    will-change: transform;
-}
-
-.ring-outer {
-    inset: 0;
-    border: 1.5px dashed rgba(244, 63, 94, 0.35);
-    box-shadow: 0 0 35px rgba(244, 63, 94, 0.15), inset 0 0 35px rgba(244, 63, 94, 0.12);
-    transform: rotateX(68deg) rotateZ(0deg);
-    animation: orbitSpinOuter 48s linear infinite;
-}
-
-.ring-middle {
-    inset: 14%;
-    border: 1.5px solid rgba(139, 92, 246, 0.32);
-    border-top-color: rgba(244, 63, 94, 0.65);
-    border-bottom-color: rgba(236, 72, 153, 0.65);
-    box-shadow: 0 0 45px rgba(139, 92, 246, 0.2);
-    transform: rotateX(68deg) rotateZ(360deg);
-    animation: orbitSpinInner 36s linear infinite;
-}
-
-.ring-inner {
-    inset: 28%;
-    border: 1px dashed rgba(236, 72, 153, 0.38);
-    box-shadow: 0 0 25px rgba(236, 72, 153, 0.15);
-    transform: rotateX(68deg) rotateZ(0deg);
-    animation: orbitSpinOuter 26s linear infinite;
-}
-
-.orbit-core-glow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 45%;
-    height: 45%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(244, 63, 94, 0.3) 0%, rgba(139, 92, 246, 0.14) 45%, transparent 70%);
-    filter: blur(35px);
-    animation: corePulseGlow 9s ease-in-out infinite alternate;
-    will-change: transform, opacity;
-}
-
-@keyframes orbitSpinOuter {
-    from {
-        transform: rotateX(68deg) rotateZ(0deg);
-    }
-    to {
-        transform: rotateX(68deg) rotateZ(360deg);
-    }
-}
-
-@keyframes orbitSpinInner {
-    from {
-        transform: rotateX(68deg) rotateZ(360deg);
-    }
-    to {
-        transform: rotateX(68deg) rotateZ(0deg);
-    }
-}
-
-@keyframes corePulseGlow {
-    0% {
-        transform: translate(-50%, -50%) scale(0.9);
-        opacity: 0.65;
-    }
-    100% {
-        transform: translate(-50%, -50%) scale(1.15);
-        opacity: 1;
+    html, body {
+        -webkit-overflow-scrolling: touch;
     }
 }

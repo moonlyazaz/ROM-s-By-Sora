@@ -38,15 +38,48 @@
 
     <!-- Modern Ambient Atmosphere Backdrop with Subtle Meteors -->
     <div class="modern-backdrop" aria-hidden="true">
-        <div class="cosmic-aurora aurora-1"></div>
-        <div class="cosmic-aurora aurora-2"></div>
-        <div class="cosmic-aurora aurora-3"></div>
-        <div class="cosmic-orbit-system">
-            <div class="orbit-ring ring-outer"></div>
-            <div class="orbit-ring ring-middle"></div>
-            <div class="orbit-ring ring-inner"></div>
-            <div class="orbit-core-glow"></div>
-        </div>
+        <!-- Smooth Zero-Blur GPU Radial Nebulae (Lightweight & Grand Scale) -->
+        <div class="nebula-cloud nebula-1"></div>
+        <div class="nebula-cloud nebula-2"></div>
+        <div class="nebula-cloud nebula-3"></div>
+        
+        <!-- Giant Celestial Orbit SVG (Zero Repaint, Pure GPU 60-120 FPS on Android) -->
+        <svg class="celestial-orbit-svg" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <radialGradient id="celestialCore" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#f43f5e" stop-opacity="0.32" />
+                    <stop offset="35%" stop-color="#ec4899" stop-opacity="0.16" />
+                    <stop offset="65%" stop-color="#8b5cf6" stop-opacity="0.06" />
+                    <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0" />
+                </radialGradient>
+                <linearGradient id="orbitGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f43f5e" stop-opacity="0.55" />
+                    <stop offset="50%" stop-color="#ec4899" stop-opacity="0.25" />
+                    <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.55" />
+                </linearGradient>
+                <linearGradient id="orbitGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.6" />
+                    <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.2" />
+                    <stop offset="100%" stop-color="#f43f5e" stop-opacity="0.5" />
+                </linearGradient>
+            </defs>
+            <circle cx="400" cy="400" r="320" fill="url(#celestialCore)" />
+            <g class="orbit-group-outer">
+                <ellipse cx="400" cy="400" rx="360" ry="135" stroke="url(#orbitGrad1)" stroke-width="1.5" stroke-dasharray="14 10" />
+                <circle cx="760" cy="400" r="4.5" fill="#ffffff" />
+                <circle cx="40" cy="400" r="3.5" fill="#f43f5e" />
+            </g>
+            <g class="orbit-group-middle">
+                <ellipse cx="400" cy="400" rx="270" ry="100" stroke="url(#orbitGrad2)" stroke-width="1.5" />
+                <circle cx="670" cy="400" r="3.5" fill="#ec4899" />
+                <circle cx="130" cy="400" r="3" fill="#8b5cf6" />
+            </g>
+            <g class="orbit-group-inner">
+                <ellipse cx="400" cy="400" rx="180" ry="68" stroke="rgba(244, 63, 94, 0.45)" stroke-width="1.2" stroke-dasharray="8 6" />
+                <circle cx="580" cy="400" r="2.5" fill="#ffffff" />
+            </g>
+        </svg>
+    </div>
     </div>
 
     <div id="app">
