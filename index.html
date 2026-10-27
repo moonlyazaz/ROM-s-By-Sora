@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" data-css-theme="-blue">
+<html lang="en" data-css-theme="-red">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Butterscotch | Custom ROMs & Ports</title>
-    <meta name="description" content="High-performance custom ROMs, ports, and vendor builds for Xiaomi & Redmi devices (fog, kunzite, earth, gale)." />
+    <title>Sora | Custom ROMs & Ports</title>
+    <meta name="description" content="High-performance custom ROMs and HyperOS ports for Xiaomi Redmi 12C / POCO C55 (earth). Maintained by @moonly_os." />
     <meta name="theme-color" content="#07080a" id="meta-theme-color" />
     <script>
         (function() {
+            if ('scrollRestoration' in history) {
+                history.scrollRestoration = 'manual';
+            }
+            window.scrollTo(0, 0);
             try {
-                const saved = localStorage.getItem('butterscotch-theme');
+                const saved = localStorage.getItem('sora-theme') || localStorage.getItem('butterscotch-theme');
                 const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
                 const theme = saved || (systemDark ? 'dark' : 'light');
                 document.documentElement.setAttribute('data-theme', theme);
@@ -17,43 +21,65 @@
                 if (metaTheme) metaTheme.setAttribute('content', theme === 'light' ? '#f8fafc' : '#07080a');
             } catch (e) {}
         })();
+        window.addEventListener('pageshow', function() { window.scrollTo(0, 0); });
+        window.addEventListener('load', function() { window.scrollTo(0, 0); });
     </script>
-    <meta property="og:title" content="Butterscotch | Custom Android ROMs & Ports" />
-    <meta property="og:description" content="High-performance custom ROMs, ports, and vendor builds for Xiaomi & Redmi devices." />
+    <meta property="og:title" content="Sora | Custom Android ROMs & Ports" />
+    <meta property="og:description" content="High-performance custom ROMs and HyperOS ports for Xiaomi Redmi 12C / POCO C55." />
     <meta property="og:type" content="website" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link id="main-css" rel="stylesheet" href="assets/css/style.css?v=20261023" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;850&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link id="main-css" rel="stylesheet" href="assets/css/style.css?v=20261027" />
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
 
-    <!-- Material 3 Expressive Background Atmospheric Shapes (Rotating Fans / Baling-baling Kipas) -->
-    <div class="backdrop" aria-hidden="true">
-        <!-- Fan A: 8-blade flower fan -->
-        <svg class="bd bd-a" viewBox="0 0 100 100">
-            <path d="M50.0,4.0 L52.37,4.7 L54.55,6.67 L56.4,9.59 L57.87,12.96 L59.05,16.23 L60.1,18.91 L61.27,20.65 L62.79,21.28 L64.84,20.88 L67.48,19.72 L70.63,18.24 L74.05,16.9 L77.42,16.14 L80.35,16.29 L82.53,17.47 L83.71,19.65 L83.86,22.58 L83.1,25.95 L81.76,29.37 L80.28,32.52 L79.12,35.16 L78.72,37.21 L79.35,38.73 L81.09,39.9 L83.77,40.95 L87.04,42.13 L90.41,43.6 L93.33,45.45 L95.3,47.63 L96.0,50.0 L95.3,52.37 L93.33,54.55 L90.41,56.4 L87.04,57.87 L83.77,59.05 L81.09,60.1 L79.35,61.27 L78.72,62.79 L79.12,64.84 L80.28,67.48 L81.76,70.63 L83.1,74.05 L83.86,77.42 L83.71,80.35 L82.53,82.53 L80.35,83.71 L77.42,83.86 L74.05,83.1 L70.63,81.76 L67.48,80.28 L64.84,79.12 L62.79,78.72 L61.27,79.35 L60.1,81.09 L59.05,83.77 L57.87,87.04 L56.4,90.41 L54.55,93.33 L52.37,95.3 L50.0,96.0 L47.63,95.3 L45.45,93.33 L43.6,90.41 L42.13,87.04 L40.95,83.77 L39.9,81.09 L38.73,79.35 L37.21,78.72 L35.16,79.12 L32.52,80.28 L29.37,81.76 L25.95,83.1 L22.58,83.86 L19.65,83.71 L17.47,82.53 L16.29,80.35 L16.14,77.42 L16.9,74.05 L18.24,70.63 L19.72,67.48 L20.88,64.84 L21.28,62.79 L20.65,61.27 L18.91,60.1 L16.23,59.05 L12.96,57.87 L9.59,56.4 L6.67,54.55 L4.7,52.37 L4.0,50.0 L4.7,47.63 L6.67,45.45 L9.59,43.6 L12.96,42.13 L16.23,40.95 L18.91,39.9 L20.65,38.73 L21.28,37.21 L20.88,35.16 L19.72,32.52 L18.24,29.37 L16.9,25.95 L16.14,22.58 L16.29,19.65 L17.47,17.47 L19.65,16.29 L22.58,16.14 L25.95,16.9 L29.37,18.24 L32.52,19.72 L35.16,20.88 L37.21,21.28 L38.73,20.65 L39.9,18.91 L40.95,16.23 L42.13,12.96 L43.6,9.59 L45.45,6.67 L47.63,4.7 Z" fill="currentColor"/>
-        </svg>
-        <!-- Fan B: 8-blade star fan -->
-        <svg class="bd bd-b" viewBox="0 0 100 100">
-            <path d="M50.0,4.0 L52.4,4.25 L54.73,5.02 L56.9,6.45 L58.26,11.12 L59.85,13.25 L61.5,14.6 L63.2,15.6 L64.99,16.34 L66.9,16.83 L69.02,17.05 L71.65,16.66 L75.92,14.32 L78.47,14.85 L80.66,15.95 L82.53,17.47 L84.05,19.34 L85.15,21.53 L85.68,24.08 L83.34,28.35 L82.95,30.98 L83.17,33.1 L83.66,35.01 L84.4,36.8 L85.4,38.5 L86.75,40.15 L88.88,41.74 L93.55,43.1 L94.98,45.27 L95.75,47.6 L96.0,50.0 L95.75,52.4 L94.98,54.73 L93.55,56.9 L88.88,58.26 L86.75,59.85 L85.4,61.5 L84.4,63.2 L83.66,64.99 L83.17,66.9 L82.95,69.02 L83.34,71.65 L85.68,75.92 L85.15,78.47 L84.05,80.66 L82.53,82.53 L80.66,84.05 L78.47,85.15 L75.92,85.68 L71.65,83.34 L69.02,82.95 L66.9,83.17 L64.99,83.66 L63.2,84.4 L61.5,85.4 L59.85,86.75 L58.26,88.88 L56.9,93.55 L54.73,94.98 L52.4,95.75 L50.0,96.0 L47.6,95.75 L45.27,94.98 L43.1,93.55 L41.74,88.88 L40.15,86.75 L38.5,85.4 L36.8,84.4 L35.01,83.66 L33.1,83.17 L30.98,82.95 L28.35,83.34 L24.08,85.68 L21.53,85.15 L19.34,84.05 L17.47,82.53 L15.95,80.66 L14.85,78.47 L14.32,75.92 L16.66,71.65 L17.05,69.02 L16.83,66.9 L16.34,64.99 L15.6,63.2 L14.6,61.5 L13.25,59.85 L11.12,58.26 L6.45,56.9 L5.02,54.73 L4.25,52.4 L4.0,50.0 L4.25,47.6 L5.02,45.27 L6.45,43.1 L11.12,41.74 L13.25,40.15 L14.6,38.5 L15.6,36.8 L16.34,35.01 L16.83,33.1 L17.05,30.98 L16.66,28.35 L14.32,24.08 L14.85,21.53 L15.95,19.34 L17.47,17.47 L19.34,15.95 L21.53,14.85 L24.08,14.32 L28.35,16.66 L30.98,17.05 L33.1,16.83 L35.01,16.34 L36.8,15.6 L38.5,14.6 L40.15,13.25 L41.74,11.12 L43.1,6.45 L45.27,5.02 L47.6,4.25 Z" fill="currentColor"/>
-        </svg>
-        <!-- Fan C: 4-blade clover fan -->
-        <svg class="bd bd-c" viewBox="0 0 100 100">
-            <path d="M50.0,4.0 L52.4,4.3 L54.7,5.4 L56.8,7.0 L58.7,9.1 L60.3,11.5 L61.7,14.1 L62.8,16.6 L63.9,18.8 L64.6,21.3 L65.0,24.0 L65.3,26.5 L65.5,28.7 L65.8,30.5 L66.2,32.0 L66.9,33.1 L68.0,33.8 L69.5,34.2 L71.3,34.5 L73.5,34.7 L76.0,35.0 L78.7,35.4 L81.2,36.1 L83.4,37.2 L85.9,38.3 L88.5,39.7 L90.9,41.3 L93.0,43.2 L94.6,45.3 L95.7,47.6 L96.0,50.0 L95.7,52.4 L94.6,54.7 L93.0,56.8 L90.9,58.7 L88.5,60.3 L85.9,61.7 L83.4,62.8 L81.2,63.9 L78.7,64.6 L76.0,65.0 L73.5,65.3 L71.3,65.5 L69.5,65.8 L68.0,66.2 L66.9,66.9 L66.2,68.0 L65.8,69.5 L65.5,71.3 L65.3,73.5 L65.0,76.0 L64.6,78.7 L63.9,81.2 L62.8,83.4 L61.7,85.9 L60.3,88.5 L58.7,90.9 L56.8,93.0 L54.7,94.6 L52.4,95.7 L50.0,96.0 L47.6,95.7 L45.3,94.6 L43.2,93.0 L41.3,90.9 L39.7,88.5 L38.3,85.9 L37.2,83.4 L36.1,81.2 L35.4,78.7 L35.0,76.0 L34.7,73.5 L34.5,71.3 L34.2,69.5 L33.8,68.0 L33.1,66.9 L32.0,66.2 L30.5,65.8 L28.7,65.5 L26.5,65.3 L24.0,65.0 L21.3,64.6 L18.8,63.9 L16.6,62.8 L14.1,61.7 L11.5,60.3 L9.1,58.7 L7.0,56.8 L5.4,54.7 L4.3,52.4 L4.0,50.0 L4.3,47.6 L5.4,45.3 L7.0,43.2 L9.1,41.3 L11.5,39.7 L14.1,38.3 L16.6,37.2 L18.8,36.1 L21.3,35.4 L24.0,35.0 L26.5,34.7 L28.7,34.5 L30.5,34.2 L32.0,33.8 L33.1,33.1 L33.8,32.0 L34.2,30.5 L34.5,28.7 L34.7,26.5 L35.0,24.0 L35.4,21.3 L36.1,18.8 L37.2,16.6 L38.3,14.1 L39.7,11.5 L41.3,9.1 L43.2,7.0 L45.3,5.4 L47.6,4.3 Z" fill="currentColor"/>
-        </svg>
+    <!-- Modern Ambient Atmosphere Backdrop with Subtle Meteors -->
+    <div class="modern-backdrop" aria-hidden="true">
+        <div class="ambient-glow glow-1"></div>
+        <div class="ambient-glow glow-2"></div>
+        <div class="ambient-glow glow-3"></div>
+        <div class="meteors-container">
+            <span class="meteor"></span>
+            <span class="meteor"></span>
+            <span class="meteor"></span>
+            <span class="meteor"></span>
+            <span class="meteor"></span>
+            <span class="meteor"></span>
+            <span class="meteor"></span>
+            <span class="meteor"></span>
+            <span class="meteor"></span>
+            <span class="meteor"></span>
+            <span class="meteor"></span>
+            <span class="meteor"></span>
+            <span class="meteor"></span>
+            <span class="meteor"></span>
+            <span class="meteor"></span>
+            <span class="meteor"></span>
+            <span class="meteor"></span>
+            <span class="meteor"></span>
+            <span class="meteor"></span>
+            <span class="meteor"></span>
+            <span class="meteor"></span>
+            <span class="meteor"></span>
+            <span class="meteor"></span>
+            <span class="meteor"></span>
+            <span class="meteor"></span>
+            <span class="meteor"></span>
+            <span class="meteor"></span>
+            <span class="meteor"></span>
+            <span class="meteor"></span>
+            <span class="meteor"></span>
+        </div>
     </div>
 
     <div id="app">
         <!-- Sticky Glass Navigation -->
         <nav>
-            <div class="nav-brand" onclick="navigateHome()" title="Butterscotch Home">
+            <div class="nav-brand" onclick="navigateHome()" title="Sora Home">
                 <div class="nav-logo-icon">
-                    <svg class="nav-flower-bg" viewBox="0 0 100 100" aria-hidden="true">
-                        <path d="M50.0,4.0 L52.37,4.7 L54.55,6.67 L56.4,9.59 L57.87,12.96 L59.05,16.23 L60.1,18.91 L61.27,20.65 L62.79,21.28 L64.84,20.88 L67.48,19.72 L70.63,18.24 L74.05,16.9 L77.42,16.14 L80.35,16.29 L82.53,17.47 L83.71,19.65 L83.86,22.58 L83.1,25.95 L81.76,29.37 L80.28,32.52 L79.12,35.16 L78.72,37.21 L79.35,38.73 L81.09,39.9 L83.77,40.95 L87.04,42.13 L90.41,43.6 L93.33,45.45 L95.3,47.63 L96.0,50.0 L95.3,52.37 L93.33,54.55 L90.41,56.4 L87.04,57.87 L83.77,59.05 L81.09,60.1 L79.35,61.27 L78.72,62.79 L79.12,64.84 L80.28,67.48 L81.76,70.63 L83.1,74.05 L83.86,77.42 L83.71,80.35 L82.53,82.53 L80.35,83.71 L77.42,83.86 L74.05,83.1 L70.63,81.76 L67.48,80.28 L64.84,79.12 L62.79,78.72 L61.27,79.35 L60.1,81.09 L59.05,83.77 L57.87,87.04 L56.4,90.41 L54.55,93.33 L52.37,95.3 L50.0,96.0 L47.63,95.3 L45.45,93.33 L43.6,90.41 L42.13,87.04 L40.95,83.77 L39.9,81.09 L38.73,79.35 L37.21,78.72 L35.16,79.12 L32.52,80.28 L29.37,81.76 L25.95,83.1 L22.58,83.86 L19.65,83.71 L17.47,82.53 L16.29,80.35 L16.14,77.42 L16.9,74.05 L18.24,70.63 L19.72,67.48 L20.88,64.84 L21.28,62.79 L20.65,61.27 L18.91,60.1 L16.23,59.05 L12.96,57.87 L9.59,56.4 L6.67,54.55 L4.7,52.37 L4.0,50.0 L4.7,47.63 L6.67,45.45 L9.59,43.6 L12.96,42.13 L16.23,40.95 L18.91,39.9 L20.65,38.73 L21.28,37.21 L20.88,35.16 L19.72,32.52 L18.24,29.37 L16.9,25.95 L16.14,22.58 L16.29,19.65 L17.47,17.47 L19.65,16.29 L22.58,16.14 L25.95,16.9 L29.37,18.24 L32.52,19.72 L35.16,20.88 L37.21,21.28 L38.73,20.65 L39.9,18.91 L40.95,16.23 L42.13,12.96 L43.6,9.59 L45.45,6.67 L47.63,4.7 Z" fill="currentColor"/>
-                    </svg>
                     <svg class="nav-logo-robot" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                         <!-- Android Robot Antennae -->
                         <line x1="8.5" y1="3" x2="6.8" y2="1.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
@@ -71,7 +97,7 @@
                         <rect x="13.4" y="17.5" width="2.6" height="5" rx="1.3" fill="currentColor"/>
                     </svg>
                 </div>
-                <span class="nav-logo-text">Butterscotch</span>
+                <span class="nav-logo-text">Sora</span>
                 <span class="nav-badge-pill">ROMs</span>
             </div>
             <div class="nav-controls">
@@ -95,7 +121,7 @@
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
                 </button>
-                <a href="https://telegram.me/dtyaa_ajh" target="_blank" rel="noopener noreferrer" class="btn-icon tg-btn" title="Telegram Maintainer" aria-label="Telegram Maintainer">
+                <a href="https://t.me/moonly_os" target="_blank" rel="noopener noreferrer" class="btn-icon tg-btn" title="Telegram Maintainer (@moonly_os)" aria-label="Telegram Maintainer">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                         <path d="m20.665 3.717-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l-.313 4.674c.459 0 .66-.21.916-.459l2.199-2.138 4.573 3.379c.843.464 1.448.225 1.658-.783l3-14.143c.307-1.23-.467-1.786-1.509-1.336z"/>
                     </svg>
@@ -103,68 +129,56 @@
             </div>
         </nav>
 
-        <!-- Announcement Banner -->
-        <div id="announcement-banner" class="banner hidden">
-            <div class="banner-content">
-                <span class="banner-badge">Info</span>
-                <div class="banner-info">
-                    <div class="banner-text" id="banner-text">
-                        <div id="announcement-text"></div>
-                    </div>
-                    <button class="expand-btn" id="expand-btn">View more</button>
-                </div>
-            </div>
-            <button id="close-banner" class="close-btn" aria-label="Close Announcement">&times;</button>
-        </div>
-
         <!-- Home Page -->
         <div id="page-home" class="page active">
-            <!-- Hero Showcase Section -->
-            <div class="minimal-hero">
-                <h1 class="minimal-hero-title">Butterscotch <span>ROMs</span></h1>
+            <!-- Modern Redesigned Hero Showcase Section -->
+            <div class="modern-hero">
+                <div class="hero-chip">
+                    <span class="pulse-indicator"></span>
+                    <span>Redmi 12C / POCO C55 (earth)</span>
+                </div>
+                <h1 class="modern-hero-title">Sora <span class="gradient-text">ROMs</span></h1>
+                <p class="modern-hero-desc">High-performance custom ROMs & HyperOS ports engineered for smooth daily driving.</p>
+
+                <div class="modern-hero-stats">
+                    <div class="hero-stat-item">
+                        <span class="hero-stat-num" id="stat-total-roms">6</span>
+                        <span class="hero-stat-label">HyperOS ROMs</span>
+                    </div>
+                    <div class="hero-stat-divider"></div>
+                    <div class="hero-stat-item">
+                        <span class="hero-stat-num" id="stat-android-versions">14 - 17</span>
+                        <span class="hero-stat-label">Android Versions</span>
+                    </div>
+                    <div class="hero-stat-divider"></div>
+                    <div class="hero-stat-item">
+                        <a href="https://t.me/moonly_os" target="_blank" rel="noopener noreferrer" style="text-decoration: none;" class="hero-stat-num">@moonly_os</a>
+                        <span class="hero-stat-label">Maintainer</span>
+                    </div>
+                </div>
             </div>
 
-            <!-- Filter & Search Hub -->
-            <div class="filter-search-hub">
-                <div class="search-box">
-                    <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <!-- Modern Clean Search Container (No horizontal scrolling chips/dropdowns) -->
+            <div class="modern-search-container">
+                <div class="search-box modern-search-box">
+                    <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
-                    <input type="text" id="rom-search-input" placeholder="Search ROM or device..." aria-label="Search ROMs">
+                    <input type="text" id="rom-search-input" placeholder="Search ROM by name, Android version..." aria-label="Search ROMs">
                     <kbd class="search-shortcut" title="Press / to search">/</kbd>
                     <button id="search-clear-btn" class="search-clear-btn hidden" aria-label="Clear search">&times;</button>
                 </div>
-
-                <div class="hub-controls-row">
-                    <div class="device-chips" id="device-filter-chips">
-                        <!-- Populated by script.js -->
-                    </div>
-                    <div class="sort-control">
-                        <label for="rom-sort-select" class="sort-label">Sort:</label>
-                        <select id="rom-sort-select" class="sort-dropdown" aria-label="Sort ROMs">
-                            <option value="newest">Newest First</option>
-                            <option value="oldest">Oldest First</option>
-                            <option value="name">Name (A-Z)</option>
-                            <option value="android">Android Version</option>
-                        </select>
-                    </div>
-                </div>
             </div>
 
-            <!-- Section Label & Category Tabs -->
-            <div class="section-header">
-                <div class="section-label-row">
-                    <h2 class="section-label">Available ROMs</h2>
-                    <span class="results-counter" id="results-counter"></span>
-                </div>
-                <div class="filter-controls" id="home-device-filter-container">
-                    <!-- Populated by script.js -->
-                </div>
+            <!-- Section Label -->
+            <div class="modern-section-header">
+                <h2 class="modern-section-title">Available ROMs</h2>
+                <span class="results-counter" id="results-counter"></span>
             </div>
 
-            <!-- Cards Bento Grid -->
-            <div class="cards-grid" id="cards-container">
+            <!-- Cards Grid -->
+            <div class="cards-grid modern-cards-grid" id="cards-container">
                 <!-- Populated by script.js -->
             </div>
         </div>
@@ -199,14 +213,14 @@
         <!-- Modern Footer -->
         <footer>
             <div class="footer-content">
-                <div class="footer-logo">Butterscotch</div>
-                <p class="footer-tagline">Clean, high-performance custom ROMs & ports for the community.</p>
+                <div class="footer-logo">Sora</div>
+                <p class="footer-tagline">Clean, high-performance custom ROMs & ports for Redmi 12C (earth).</p>
                 <div class="footer-links">
-                    <a href="https://telegram.me/dtyaa_ajh" target="_blank" rel="noopener noreferrer">Maintainer</a>
+                    <a href="https://t.me/moonly_os" target="_blank" rel="noopener noreferrer">Maintainer (@moonly_os)</a>
                 </div>
                 <p class="footer-disclaimer">
                     Custom ROMs are developed independently. Flashing custom software involves risk.
-                    <br>&copy; <span id="footer-year">2026</span> Butterscotch Project. All rights reserved.
+                    <br>&copy; <span id="footer-year">2026</span> Sora ROMs. All rights reserved.
                 </p>
             </div>
         </footer>
@@ -331,14 +345,11 @@
         </svg>
     </button>
 
-    <!-- Mobile Sticky Action Bar (Anchored directly to viewport root) -->
+    <!-- Mobile Sticky Action Bar -->
     <div id="mobile-sticky-bar" class="mobile-sticky-bar" style="display: none;"></div>
 
     <!-- Scripts -->
-    <script src="assets/js/kunzite.js"></script>
-    <script src="assets/js/fog.js"></script>
     <script src="assets/js/earth.js"></script>
-    <script src="assets/js/gale.js"></script>
     <script src="assets/js/script.js"></script>
 </body>
 </html>

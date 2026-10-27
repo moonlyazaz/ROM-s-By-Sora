@@ -299,14 +299,13 @@ function preloadAssets() {
 
 // Application Initialization
 document.addEventListener("DOMContentLoaded", () => {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
     preloadAssets();
 
     // Aggregate ROM datasets
     window.romData = [];
-    if (window.kunziteData) window.romData = window.romData.concat(window.kunziteData);
-    if (window.fogData) window.romData = window.romData.concat(window.fogData);
     if (window.earthData) window.romData = window.romData.concat(window.earthData);
-    if (window.galeData) window.romData = window.romData.concat(window.galeData);
 
     window.romData.forEach(item => {
         if (!item.category) {
@@ -921,7 +920,7 @@ function navigateHome(fromHash = false) {
         existingStickyBar.innerHTML = '';
     }
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo(0, 0);
 
     renderCategoryFilters();
     renderDeviceFilterChips();
@@ -1446,7 +1445,7 @@ function viewDetail(id) {
     document.getElementById('page-detail').classList.add('active');
     document.body.classList.add('has-sticky-bar');
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo(0, 0);
 }
 
 // Lightbox Functions
@@ -1584,7 +1583,7 @@ function initScrollToTop() {
     }, { passive: true });
 
     scrollBtn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo(0, 0);
     });
 
     // Keep the floating button from covering the footer's text on phones.
