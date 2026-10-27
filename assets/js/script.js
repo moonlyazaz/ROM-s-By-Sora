@@ -1521,16 +1521,23 @@ function initLightboxTouchGestures() {
     }, { passive: true });
 }
 
-// Scroll to Top
+// Scroll to Top & Footer Observer (Ultra-Lightweight & Zero Reflow)
 function initScrollToTop() {
     const scrollBtn = document.getElementById('scroll-top-btn');
     if (!scrollBtn) return;
 
+    let ticking = false;
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            scrollBtn.classList.add('visible');
-        } else {
-            scrollBtn.classList.remove('visible');
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                if (window.scrollY > 300) {
+                    scrollBtn.classList.add('visible');
+                } else {
+                    scrollBtn.classList.remove('visible');
+                }
+                ticking = false;
+            });
+            ticking = true;
         }
     }, { passive: true });
 
@@ -1538,19 +1545,12 @@ function initScrollToTop() {
         window.scrollTo(0, 0);
     });
 
-    // Keep the floating button from covering the footer's text on phones.
-    // The class is toggled unconditionally; the CSS that acts on it lives
-    // inside a max-width media query, so this is inert on larger screens.
     const footer = document.querySelector('footer');
-    if (footer) {
-        const updateNearFooter = () => {
-            const rect = footer.getBoundingClientRect();
-            const inView = rect.top < window.innerHeight && rect.bottom > 0;
-            document.body.classList.toggle('is-near-footer', inView);
-        };
-        window.addEventListener('scroll', updateNearFooter, { passive: true });
-        window.addEventListener('resize', updateNearFooter);
-        updateNearFooter();
+    if (footer && 'IntersectionObserver' in window) {
+        const footerObserver = new IntersectionObserver((entries) => {
+            document.body.classList.toggle('is-near-footer', entries[0].isIntersecting);
+        }, { threshold: 0.1 });
+        footerObserver.observe(footer);
     }
 }
 
