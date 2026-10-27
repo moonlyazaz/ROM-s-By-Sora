@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="soraGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f43f5e"/>
+      <stop offset="50%" stop-color="#ec4899"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1c172b"/>
+      <stop offset="100%" stop-color="#0a0812"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Dark Rounded Container with Neon Border -->
+  <rect width="64" height="64" rx="18" fill="url(#bgGrad)"/>
+  <rect width="62" height="62" x="1" y="1" rx="17" fill="none" stroke="rgba(244, 63, 94, 0.45)" stroke-width="1.5"/>
+
+  <!-- Glowing Crescent Moon (MoonlyOS / Sora) -->
+  <path d="M37.5 14 C27.5 16.5 20 25.5 20 36 C20 48.5 30 54 39.5 53 C26.5 50.5 19 39 21.5 27.5 C23 20.5 28 15.5 37.5 14 Z" 
+        fill="url(#soraGrad)" filter="url(#glow)" />
+
+  <!-- Sparkling 4-point Star -->
+  <path d="M46 16 C46 20 48 22 52 22 C48 22 46 24 46 28 C46 24 44 22 40 22 C44 22 46 20 46 16 Z" 
+        fill="#ffffff" />
+  <circle cx="46" cy="22" r="1.5" fill="#f43f5e" />
+
+  <!-- Small Ambient Star -->
+  <circle cx="21" cy="18" r="1.2" fill="#8b5cf6" opacity="0.8" />
+  <circle cx="45" cy="45" r="1.5" fill="#ec4899" opacity="0.8" />
+</svg>
