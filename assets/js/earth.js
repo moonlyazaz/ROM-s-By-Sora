@@ -1,5 +1,51 @@
 window.earthData = [
     {
+        id: "earth_cos15",
+        name: "ColorOS 15.0",
+        category: "ColorOS",
+        device: "Xiaomi Redmi 12C (earth)",
+        version: "Android 15",
+        buildDate: "2026-10-29",
+        isUpcoming: true,
+        cssSuffix: "-emerald",
+        downloadUrl: "",
+        banner: "assets/roms/earth/cos15/banner.webp",
+        screenshots: [
+            "assets/roms/earth/cos15/1.jpg",
+            "assets/roms/earth/cos15/2.jpg",
+            "assets/roms/earth/cos15/3.jpg",
+            "assets/roms/earth/cos15/4.jpg",
+            "assets/roms/earth/cos15/5.jpg",
+            "assets/roms/earth/cos15/6.jpg",
+            "assets/roms/earth/cos15/7.jpg"
+        ],
+        description: "> *\"Smart & Smooth — Official ColorOS 15 Port for Redmi 12C / POCO C55.\"*
+
+### Status
+- **Release Date:** Thursday, October 29, 2026
+- **Base:** ColorOS 15.0 CN (PHP110_15.0.0.1301)
+- **Port Maintainer:** Sora ([@moonly_os](https://t.me/moonly_os))
+
+### Known Issues & Bugs
+- **Bugs:** None so far! Everything tested is working smoothly.
+
+### Highlights
+- ColorOS 15 Fluid Cloud & Aqua Dynamics UI
+- Trinity Engine system-level performance enhancements
+- Fully working Wi-Fi (2.4G & 5GHz), Mobile Data (4G VoLTE), Bluetooth, and Audio
+- High-stability daily driver build",
+        flashInstruction: "### Installation Guide (Releasing Thursday)
+1. Boot into Custom Recovery (OrangeFox or TWRP)
+2. Backup all personal data
+3. Format Data & Wipe Cache/Dalvik
+4. Flash the ColorOS 15 ROM zip once published
+5. Reboot system",
+        credits: "- **Maintainer & Port:** Sora ([@moonly_os](https://t.me/moonly_os))
+- **Community:** [@earthstuffs](https://t.me/earthstuffs)
+- **Base Firmware:** OPPO ColorOS 15"
+    },
+
+    {
         id: "earth_hos4",
         name: "HyperOS 4",
         category: "Xiaomi (HyperOS, MIUI)",

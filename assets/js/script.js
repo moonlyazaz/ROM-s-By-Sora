@@ -692,7 +692,7 @@ function renderROMCards() {
         const build = rom.buildDate ? getGMT8Target(rom.buildDate) : null;
         const now = new Date();
         const isWip = !!rom.isWip;
-        const isUpcoming = !isWip && build && build > now;
+        const isUpcoming = !isWip && ((build && build > now) || !!rom.isUpcoming);
         const isUnlockedByYtta = isUpcoming && isYttaMode;
         const isNuked = !isWip && !isUpcoming && (!rom.downloadUrl || rom.downloadUrl.trim() === "");
 
@@ -919,12 +919,13 @@ function showUpcomingPopup() {
             <div class="modal-popup-icon-box warning">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
             </div>
-            <h2 class="modal-popup-title warning">Stay Tuned!</h2>
+            <h2 class="modal-popup-title warning">Coming Soon!</h2>
             <p class="modal-popup-text">
-                This build is actively in development. Direct downloads will be posted as soon as testing completes.
+                This ROM is scheduled for release on Thursday. Download links will be posted on Telegram <strong>@earthstuffs</strong> / <strong>@moonly_os</strong> as soon as release goes live!
             </p>
             <div class="modal-actions-row">
-                <button class="btn-dl primary" onclick="closeModal()">Got it</button>
+                <a class="btn-dl primary" href="https://t.me/earthstuffs" target="_blank" rel="noopener noreferrer">Telegram Channel</a>
+                <button class="btn-dl secondary" onclick="closeModal()">Got it</button>
             </div>
         </div>
     `;
@@ -1291,7 +1292,7 @@ function viewDetail(id) {
 
         <div class="rom-description-container">
             <div id="tab-desc" class="tab-content active">
-                ${(isUpcoming && !isUnlockedByYtta) ? `
+                ${(isUpcoming && !isUnlockedByYtta && rom.lockChangelog) ? `
                     <div class="upcoming-desc-wrapper">
                         <div class="upcoming-desc-body is-blurred">
                             ${descHtml}
