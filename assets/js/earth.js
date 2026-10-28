@@ -1,7 +1,7 @@
 window.earthData = [
 {
     id: "earth_cos15",
-    name: "ColorOS 15.0",
+    name: "ColorOS 15.0 CN",
     category: "Non-Xiaomi",
     device: "Xiaomi Redmi 12C (earth)",
     version: "Android 15",
