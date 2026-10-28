@@ -5,7 +5,7 @@ window.earthData = [
     category: "Non-Xiaomi",
     device: "Xiaomi Redmi 12C (earth)",
     version: "Android 15",
-    buildDate: "2026-10-29",
+    buildDate: "2026-10-28",
     cssSuffix: "-emerald",
     downloadUrl: "https://drive.google.com/file/d/1jK9PLnRC_ywhW0T07dxjp5c5DoBzKxIe/view?usp=sharing",
     banner: "assets/roms/earth/cos15/banner.webp",
