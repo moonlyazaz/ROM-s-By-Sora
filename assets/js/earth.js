@@ -1,5 +1,36 @@
 window.earthData = [
 {
+    id: "earth_oos16",
+    name: "OxygenOS 16",
+    category: "Non-Xiaomi",
+    device: "Xiaomi Redmi 12C (earth)",
+    version: "Android 16",
+    buildDate: "2026-10-30",
+    cssSuffix: "-red",
+    downloadUrl: "https://drive.google.com/file/d/185rWcv2HwA57POWSFWGtXBDBQ8n4jrmJ/view?usp=sharing",
+    banner: "assets/roms/earth/oos/banner.jpg",
+    screenshots: [
+        "assets/roms/earth/oos/1.jpg",
+        "assets/roms/earth/oos/2.jpg",
+        "assets/roms/earth/oos/3.jpg",
+        "assets/roms/earth/oos/4.jpg",
+        "assets/roms/earth/oos/5.jpg",
+        "assets/roms/earth/oos/6.jpg",
+        "assets/roms/earth/oos/7.jpg",
+        "assets/roms/earth/oos/8.jpg",
+        "assets/roms/earth/oos/9.jpg",
+        "assets/roms/earth/oos/10.jpg",
+        "assets/roms/earth/oos/11.jpg",
+        "assets/roms/earth/oos/12.jpg",
+        "assets/roms/earth/oos/13.jpg",
+        "assets/roms/earth/oos/14.jpg"
+    ],
+    description: "> *\"OxygenOS 16 ported for Xiaomi Redmi 12C / POCO C55 (earth) by Sora.\"*\n\n### Package Info\n- **Package:** `OxygenOS 16 - By Sora - Earth.zip`\n- **Build Version:** OxygenOS 16.0.5 (CPH2493_16.0.5.1301 EX01)\n- **Port Maintainer:** Sora ([@moonly_os](https://t.me/moonly_os))\n\n> ⚠️ **Warning:** Do NOT try this ROM on aether!\n\n### Known Issues & Bugs\n- Brightness control may briefly freeze/die for a split second before returning to normal.\n\n### Highlights & Features\n- Fresh OxygenOS 16 fluid design & status bar\n- Working Wi-Fi (2.4G / 5GHz), Mobile Data, Bluetooth, and Audio\n- High battery efficiency and smooth daily performance",
+    flashInstruction: "### Installation Guide\n1. Boot into Custom Recovery (OrangeFox or TWRP)\n2. Backup all personal data\n3. Format Data & Wipe Cache/Dalvik\n4. Flash `OxygenOS 16 - By Sora - Earth.zip`\n5. Reboot to system\n\n> ⚠️ **Warning:** Do NOT attempt flashing on aether!",
+    credits: "- **Maintainer & Port:** Sora ([@moonly_os](https://t.me/moonly_os))\n- **Random Reboots Fix:** [@butterscotch1225](https://t.me/butterscotch1225)\n- **Status Bar Fix:** [@zelsta7](https://t.me/zelsta7)\n- **Porting Method:** Kanagawa Yamada\n- **Xia Brightness:** ryanistr"
+},
+
+{
     id: "earth_cos15",
     name: "ColorOS 15.0 CN",
     category: "Non-Xiaomi",
