@@ -90,7 +90,7 @@ window.earthData = [
         version: "Android 15",
         buildDate: "2026-10-28",
         cssSuffix: "-emerald",
-        downloadUrl: "https://drive.google.com/file/d/1jK9PLnRC_ywhW0T07dxjp5c5DoBzKxIe/view?usp=sharing",
+        downloadUrl: "",
         banner: "assets/roms/earth/cos15/banner.webp",
         screenshots: [
             "assets/roms/earth/cos15/1.jpg",
